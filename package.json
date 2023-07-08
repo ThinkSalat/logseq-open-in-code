@@ -1,5 +1,5 @@
 {
-  "name": "logseq-open-in-code",
+  "name": "logseq-open-in-vs-code",
   "version": "0.0.5",
   "main": "dist/index.html",
   "author": "rebornix",
@@ -17,7 +17,7 @@
     "@vitejs/plugin-vue": "2.0.0"
   },
   "logseq": {
-    "id": "logseq-open-in-code",
+    "id": "logseq-open-in-vs-code",
     "icon": "./icon.png",
     "title": "Open in VS Code"
   }
