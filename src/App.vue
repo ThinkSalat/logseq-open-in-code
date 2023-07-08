@@ -1,14 +1,6 @@
 <template>
-  <div
-    class="container-wrap"
-    v-bind:class="{ lspdark: opts.isDark }"
-    @click="_onClickOutside"
-  >
-    <div
-      class="container-inner shadow-lg"
-      v-if="ready"
-      :style="{ left: left + 'px', top: top + 'px' }"
-    >
+  <div class="container-wrap" v-bind:class="{ lspdark: opts.isDark }" @click="_onClickOutside">
+    <div class="container-inner shadow-lg" v-if="ready" :style="{ left: left + 'px', top: top + 'px' }">
       <div class="_opener" v-if="currentPage" @click="_onClickOpenCurrentPage">
         Edit current page
       </div>
@@ -46,6 +38,7 @@ async function getAnsetorPageOfCurrentBlock() {
 }
 
 async function findFile(fileId) {
+  const graph = await logseq.App.getCurrentGraph();
   const matches = await logseq.DB.datascriptQuery(
     `[:find ?file
                 :where
@@ -55,7 +48,7 @@ async function findFile(fileId) {
   );
 
   if (matches && matches.length > 0) {
-    const file = matches[0][0];
+    const file = graph.url.replace("logseq_local_", "") + "/" + matches[0][0];
     return file;
   } else {
     return null;
